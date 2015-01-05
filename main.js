@@ -1,4 +1,6 @@
+$(function () {
 
+var $picture = $('#picture');
 
 var options = {
     
@@ -40,7 +42,6 @@ var options = {
 
 
                         click: function () { //can be hover
-                            var $picture = $('#picture');
                             $picture.html(""); //clears out the div
                             
                             //var a = 2;
@@ -81,19 +82,19 @@ var options = {
 };
 
 
-$('#button1').click(function () {
-                var chart = $('#container').highcharts();
-                chart.xAxis[0].options.tickInterval = 10;
-                $picture.html("");
-                chart.xAxis[0].setExtremes(0,143);
+    $('#button1').click(function () {
+            var chart = $('#container').highcharts();
+            chart.xAxis[0].options.tickInterval = 10;
+            $picture.html("");
+            chart.xAxis[0].setExtremes(0,143);
 
         });
 
-        $('#button2').click(function () {
-                var chart = $('#container').highcharts();
-                chart.xAxis[0].options.tickInterval = 1;
-                $picture.html("");
-                chart.xAxis[0].setExtremes(0,5);
+    $('#button2').click(function () {
+            var chart = $('#container').highcharts();
+            chart.xAxis[0].options.tickInterval = 1;
+            $picture.html("");
+            chart.xAxis[0].setExtremes(0,5);
 
         });
 
@@ -130,4 +131,8 @@ $.get('HAWKCSV.csv', function(data)
     var chart = new Highcharts.Chart(options);
     //console.log(chart);
 });
+
+
+});
+
 
