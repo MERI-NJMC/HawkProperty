@@ -49,9 +49,9 @@ var options = {
                         click: function () { //can be hover
                             
                             var a = this.x;
-                            console.log(a);
+                            //console.log(a);
                             
-                            console.log(img);
+                            //console.log(img);
                             $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + a + '.jpg');
                              
                         }
@@ -101,7 +101,7 @@ var options = {
         var length = chart.series[0].data.length;
         console.log(length);
         
-        i=1
+        i=0;
         setInterval(function(){
                
                 i++;
