@@ -2,6 +2,8 @@ $(function () {
 
 var $picture = $('#picture');
 
+$picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='400' width='700' />");
+
 var options = {
     
 
@@ -12,12 +14,14 @@ var options = {
         panning: true,
         panKey: 'shift',
         
+        
         events: { 
                 load: function(){
                     this.xAxis[0].setExtremes(0, 5); 
-                    console.log('works');
+                    //console.log('works');
                 }
             }
+        
         
         
     },
@@ -34,32 +38,24 @@ var options = {
         title: {
             text: 'Elevation (NAVD88)'
         }
+        
     },
+
     plotOptions: {
             series: {
                 point: {
                     events: {
 
-
                         click: function () { //can be hover
-                            $picture.html(""); //clears out the div
                             
-                            //var a = 2;
                             var a = this.x;
-                            //reporting.appendChild(a);
-                            //console.log(a);
-
-                            var img = new Image();
+                            console.log(a);
                             
-                            //img.src = "http://arcgis5.njmeadowlands.gov/municipal/dev/highchartsfloodlevel/pics/" + a + ".jpg";
-                            img.src = "http://apps.njmeadowlands.gov/HawkProperty/pics/" + a + ".jpg";
-                            img.height = "400";
-                            img.width = "700";
-                            picture.appendChild(img);
-
-                            
+                            console.log(img);
+                            $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + a + '.jpg');
+                             
                         }
-
+                        
 
                     }
                 },
@@ -99,30 +95,24 @@ var options = {
 
     });
 
+    
     $('#button3').click(function () {
         var chart = $('#container').highcharts();
         var length = chart.series[0].data.length;
+        console.log(length);
         
-        
-        i=0
+        i=1
         setInterval(function(){
-               $picture.html("");
-               chart.series[0].data[i].select(); 
-               i++;
-               var img = new Image();
-                            
-                            //img.src = "http://arcgis5.njmeadowlands.gov/municipal/dev/highchartsfloodlevel/pics/" + i + ".jpg";
-                            img.src = "http://apps.njmeadowlands.gov/HawkProperty/pics/" + i + ".jpg";
-                            img.height = "400";
-                            img.width = "700";
-                            picture.appendChild(img);
+               
+                i++;
+                $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + i + '.jpg');
+                chart.series[0].data[i].select();
 
+                }, 1000);
 
-                }, 2000);
         
 
     });
-
 
 
 $.get('HAWKCSV.csv', function(data) 
@@ -134,6 +124,7 @@ $.get('HAWKCSV.csv', function(data)
     var series = { 
         name: 'Elevation',
         data: [] //holds the series values 
+        //color: 'FF0000'
     }; 
 
     $.each(lines, function(lineNo, line) //indexes each lineNo = 0, line = value associated
