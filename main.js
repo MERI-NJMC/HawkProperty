@@ -51,7 +51,8 @@ var options = {
 
                             var img = new Image();
                             
-                            img.src = "http://arcgis5.njmeadowlands.gov/municipal/dev/highchartsfloodlevel/pics/" + a + ".jpg";
+                            //img.src = "http://arcgis5.njmeadowlands.gov/municipal/dev/highchartsfloodlevel/pics/" + a + ".jpg";
+                            img.src = "http://apps.njmeadowlands.gov/HawkProperty/pics/" + a + ".jpg";
                             img.height = "400";
                             img.width = "700";
                             picture.appendChild(img);
@@ -83,20 +84,46 @@ var options = {
 
 
     $('#button1').click(function () {
-            var chart = $('#container').highcharts();
-            chart.xAxis[0].options.tickInterval = 10;
-            $picture.html("");
-            chart.xAxis[0].setExtremes(0,143);
+        var chart = $('#container').highcharts();
+        chart.xAxis[0].options.tickInterval = 10;
+        //$picture.html("");
+        chart.xAxis[0].setExtremes(0,143);
 
-        });
+    });
 
     $('#button2').click(function () {
-            var chart = $('#container').highcharts();
-            chart.xAxis[0].options.tickInterval = 1;
-            $picture.html("");
-            chart.xAxis[0].setExtremes(0,5);
+        var chart = $('#container').highcharts();
+        chart.xAxis[0].options.tickInterval = 1;
+        //$picture.html("");
+        chart.xAxis[0].setExtremes(0,5);
 
-        });
+    });
+
+    $('#button3').click(function () {
+        var chart = $('#container').highcharts();
+        var length = chart.series[0].data.length;
+        
+        
+        i=0
+        setInterval(function(){
+               $picture.html("");
+               chart.series[0].data[i].select(); 
+               i++;
+               var img = new Image();
+                            
+                            //img.src = "http://arcgis5.njmeadowlands.gov/municipal/dev/highchartsfloodlevel/pics/" + i + ".jpg";
+                            img.src = "http://apps.njmeadowlands.gov/HawkProperty/pics/" + i + ".jpg";
+                            img.height = "400";
+                            img.width = "700";
+                            picture.appendChild(img);
+
+
+                }, 2000);
+        
+
+    });
+
+
 
 $.get('HAWKCSV.csv', function(data) 
 {
