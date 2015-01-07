@@ -1,91 +1,87 @@
 $(function () {
 
-        var isClicked = false;
-        var $picture = $('#picture');
+    var $picture = $('#picture');
+    var isClicked = false;
+    console.log(isClicked);
+    $picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='400' width='700' />");
 
-        $picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='400' width='700' />");
-
-        var options = 
-        {
+    var options = 
+    {
     
-
-            chart: 
-            {
-                renderTo: 'container',
-                defaultSeriesType: 'spline',
-                zoomType: 'x',
-                panning: true,
-                panKey: 'shift',
+        chart: 
+        {
+            renderTo: 'container',
+            defaultSeriesType: 'spline',
+            zoomType: 'x',
+            panning: true,
+            panKey: 'shift',
         
         
-                events: 
-                { 
-                    load: function()
-                    {
-                        this.xAxis[0].setExtremes(0, 5); 
-                    }
+            events: 
+            { 
+                load: function()
+                {
+                    this.xAxis[0].setExtremes(0, 5); 
                 }
-            },
+            }
+        },
+        title: 
+        {
+            text: 'Hawk Property Inundation Model'
+        },
+        xAxis: 
+        {
+
+            tickInterval: 1,
+            categories: []
+        },
+        yAxis: 
+        {
             title: 
             {
-                text: 'Hawk Property Inundation Model'
-            },
-            xAxis: 
-            {
-
-                tickInterval: 1,
-                categories: []
-
-            },
-            yAxis: 
-            {
-                title: 
-                {
-                    text: 'Elevation (NAVD88)'
-                }
+                text: 'Elevation (NAVD88)'
+            }
         
-            },
+        },
 
-            plotOptions: 
+        plotOptions: 
+        {
+            series: 
             {
-                series: 
+                point: 
                 {
-                    point: 
+                    events: 
                     {
-                        events: 
-                        {
 
-                            click: function () //can be hover
-                            { 
+                        click: function () //can be hover
+                        { 
                             
-                                var a = this.x;
-                                //console.log(a);
+                            var a = this.x;
+                            //console.log(a);
                             
-                                //console.log(img);
-                                $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + a + '.jpg');
+                            //console.log(img);
+                            $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + a + '.jpg');
                              
-                            }
-                        
-
                         }
-                    },
-                    
-                }
-            },
 
-            tooltip: 
-            {
-                    enabled: true,
-                    formatter: function()
-                    {
-                        return 'Time: <b>' + this.x + '</b> Height: <b>' + this.y + '</b>';
                     }
-            },
+                },
+                    
+            }
+        },
 
-            series: []
+        tooltip: 
+        {
+            enabled: true,
+            formatter: function()
+            {
+                return 'Time: <b>' + this.x + '</b> Height: <b>' + this.y + '</b>';
+            }
+        },
 
-        };
+        series: []
 
+    };
 
     $('#button1').click(function () 
     {
@@ -108,17 +104,15 @@ $(function () {
     
     $('#button3').click(function () 
     {
+
         i=0;
         if(isClicked == false)
         {
             start();
-    
-
-        } else 
-        {
-                
-            pause();
-                
+        } 
+        else 
+        {   
+            pause();      
         }
 
     });
@@ -133,8 +127,8 @@ $(function () {
                 i++;
                 $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + i + '.jpg');
                 chart.series[0].data[i].select();
-                console.log(i);
-            }, 2000);
+                //console.log(i);
+            }, 1000);
             
             $('#button3').html('Pause');
             isClicked = true;
@@ -142,14 +136,12 @@ $(function () {
 
     function pause()
     {
-        
         var chart = $('#container').highcharts();
         $('#button3').html('Run'); 
         isClicked = false;
-
-
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $.get('HAWKCSV.csv', function(data) 
     {
@@ -171,7 +163,6 @@ $(function () {
             if(items[0] !="Date")
             {
                 options.xAxis.categories.push(items[0]); 
-        
             }
         
             series.data.push(parseFloat(items[1]));
@@ -186,10 +177,7 @@ $(function () {
         // Create the chart
         var chart = new Highcharts.Chart(options);
         //console.log(chart);
-        });
-
-    
-
+    });
 
 });
 
