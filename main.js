@@ -1,9 +1,10 @@
 $(function () {
 
+    var interval;
+    var i = 0;
     var $picture = $('#picture');
     var isClicked = false;
-    console.log(isClicked);
-    $picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='400' width='700' />");
+    $picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='400' width='700' class='picture' />");
 
     var options = 
     {
@@ -105,8 +106,8 @@ $(function () {
     $('#button3').click(function () 
     {
 
-        i=0;
-        if(isClicked == false)
+        
+        if(!isClicked)
         {
             start();
         } 
@@ -117,11 +118,19 @@ $(function () {
 
     });
 
+    $('#button4').click(function()
+    {
+
+        i = 0;
+        //chart.series[0].data[i].select();
+
+    });
+
     function start()
     {
         var chart = $('#container').highcharts();
             
-            var interval = setInterval(function()
+            interval = setInterval(function()
             {
                
                 i++;
@@ -139,6 +148,7 @@ $(function () {
         var chart = $('#container').highcharts();
         $('#button3').html('Run'); 
         isClicked = false;
+        clearInterval(interval);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
