@@ -55,11 +55,24 @@ body {
 #buttonContainer{
 
 	position: relative;
-	top:  60px;
-	left: 500px;
+	top:  420px;
+	left: 200px; 
+	/*left: 500px; */
 	
-}
 
+} 
+
+#display{
+
+	position: relative;
+	float:right;
+	right: 100px;
+	
+	
+
+
+}
+/*
 @media only screen and (min-width: 0px) and (max-width: 800px) {
 	
 	.picture{
@@ -72,6 +85,7 @@ body {
 	}
 
 }
+*/
 
 
 

@@ -13,7 +13,7 @@ $(function () {
         {
             renderTo: 'container',
             defaultSeriesType: 'spline',
-            zoomType: 'x',
+            //zoomType: 'x',
             panning: true,
             panKey: 'shift',
         
@@ -62,6 +62,7 @@ $(function () {
                             
                             //console.log(img);
                             $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + a + '.jpg');
+                            $('#display').html("<h2>Height: " + this.y + "</h2>");
                              
                         }
 
@@ -89,7 +90,7 @@ $(function () {
         var chart = $('#container').highcharts();
         chart.xAxis[0].options.tickInterval = 10;
         //$picture.html("");
-        chart.xAxis[0].setExtremes(0,143);
+        chart.xAxis[0].setExtremes(0,80); //143
 
     });
 
@@ -98,7 +99,7 @@ $(function () {
         var chart = $('#container').highcharts();
         chart.xAxis[0].options.tickInterval = 1;
         //$picture.html("");
-        chart.xAxis[0].setExtremes(0,5);
+        chart.xAxis[0].setExtremes(i,i); 
 
     });
 
@@ -122,6 +123,7 @@ $(function () {
     {
 
         i = 0;
+        chart.series[0].data[0].select();
         //chart.series[0].data[i].select();
 
     });
@@ -136,7 +138,8 @@ $(function () {
                 i++;
                 $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + i + '.jpg');
                 chart.series[0].data[i].select();
-                //console.log(i);
+                $('#display').html("<h2>Height: " + chart.series[0].data[i].y + "</h2>");
+                //console.log(a);
             }, 1000);
             
             $('#button3').html('Pause');
