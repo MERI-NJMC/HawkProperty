@@ -4,7 +4,7 @@ $(function () {
     var i = 0;
     var $picture = $('#picture');
     var isClicked = false;
-    $picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='400' width='700' class='picture' />");
+    $picture.append("<img id='img' src='http://apps.njmeadowlands.gov/HawkProperty/pics/0.jpg' height='450' width='800' class='picture' />");
 
     var options = 
     {
@@ -28,7 +28,7 @@ $(function () {
         },
         title: 
         {
-            text: 'Hawk Property Inundation Model'
+            text: ''
         },
         xAxis: 
         {
@@ -58,7 +58,7 @@ $(function () {
                         { 
                             
                             var a = this.x;
-                            //console.log(a);
+                            console.log(a);
                             
                             //console.log(img);
                             $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + a + '.jpg');
@@ -90,7 +90,7 @@ $(function () {
         var chart = $('#container').highcharts();
         chart.xAxis[0].options.tickInterval = 10;
         //$picture.html("");
-        chart.xAxis[0].setExtremes(0,80); //143
+        chart.xAxis[0].setExtremes(0,143); //143
 
     });
 
@@ -128,19 +128,29 @@ $(function () {
 
     });
 
+
+
+
     function start()
     {
+        
+        
         var chart = $('#container').highcharts();
             
             interval = setInterval(function()
             {
                
                 i++;
-                $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + i + '.jpg');
-                chart.series[0].data[i].select();
-                $('#display').html("<h2>Height: " + chart.series[0].data[i].y + "</h2>");
-                //console.log(a);
-            }, 1000);
+                if(i <= 134)
+                {
+                    $('#img').attr('src', 'http://apps.njmeadowlands.gov/HawkProperty/pics/' + i + '.jpg');
+                    chart.series[0].data[i].select();
+                    $('#display').html("<h2>Height: " + chart.series[0].data[i].y + "</h2>");
+                    console.log(i);
+                }
+            }, 2000);
+
+        
             
             $('#button3').html('Pause');
             isClicked = true;
@@ -153,6 +163,8 @@ $(function () {
         isClicked = false;
         clearInterval(interval);
     }
+
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

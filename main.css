@@ -5,11 +5,11 @@ body {
 
 	position: absolute; 
 	bottom: 100px;
-	width:100%;
-	height: 300px; 
+	width:95%;
+	height: 200px; 
 	min-width: 300px;
 	float: right;
-	top: 500px;
+	/* top: 500px; */
 
 }
 
@@ -45,8 +45,8 @@ body {
 #picture{
 
 	right: 450px;
-	height: 400px;
-	width: 700px;
+	height: 450px;
+	width: 800px;
 	margin: auto;
 		
 }
@@ -55,9 +55,13 @@ body {
 #buttonContainer{
 
 	position: relative;
-	top:  420px;
+	top: 500px;
+	left: 300px;
+	margin: auto;
+
+	/*top:  420px;
 	left: 200px; 
-	/*left: 500px; */
+	left: 500px; */
 	
 
 } 
